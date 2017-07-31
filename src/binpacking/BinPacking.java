@@ -5,6 +5,7 @@
  */
 package binpacking;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -23,64 +24,245 @@ public class BinPacking {
         // TODO code application logic here
         
         
+        // Variable menu
         
+        char saisie;
+        char continuer;
         Scanner sc = new Scanner(System.in);
-
-        int maxDimItemX, maxDimItemY;
+        
+        // Variables algorithme binpacking
+        
+        int tailleX;
+        int tailley;
+        int tailleZ;
+        int maxDimX;
+        int maxDimY;
+        int maxDimZ;
         int nbSousConteneur;
-        
-        Conteneur avionTest = new Conteneur(5,8);
-        TabItem tabItemTest = new TabItem();
-        
-        avionTest.init();
-        
-        
-        Item item0 = new Item(3,2);
-        Item item1 = new Item(2,1);
-        Item item2 = new Item(3,3);
-        Item item3 = new Item(1,2);
-        Item item4 = new Item(1,1);
-        Item item5 = new Item(1,3);
-        Item item6 = new Item(2,2);
-        Item item7 = new Item(3,1);
-        
-        tabItemTest.AjoutItem(item0);
-        tabItemTest.AjoutItem(item1);
-        tabItemTest.AjoutItem(item2);
-        tabItemTest.AjoutItem(item3);
-        tabItemTest.AjoutItem(item4);
-        tabItemTest.AjoutItem(item5);
-        tabItemTest.AjoutItem(item6);
-        tabItemTest.AjoutItem(item7);
-        
-        
+        int tailleMax;
+        int nbItem;
+        int maxDimItem;
+        double firstFit;
+        double firstFitDecreasing;
 
-        for (int i = 0 ; i < tabItemTest.getNbItem() ; i++){
             
-            System.out.println("id item "+i+ " : "+tabItemTest.getItem(i).getID()+" "+tabItemTest.getItem(i).getTailleX()+" "+tabItemTest.getItem(i).getTailleY());
+        System.out.println("Choisissez votre langue / Choose your language");
+        System.out.println("Appuyez sur F pour Français - F");
+        System.out.println("Press E for English - E");
+        saisie = testSaisie('e', 'E', 'f', 'F');
+            
+
+        
+        
+        if (saisie == 'f' || saisie == 'F'){
+            
+            do{
+                
+                clearConsole();
+                
+                System.out.println("1 - Espace 1 dimension");
+                System.out.println("2 - Espace 2 dimensions");
+                System.out.println("3 - Espace 3 dimensions");
+                System.out.println();
+                System.out.println("Q - Quitter");
+                saisie = testSaisie('1', '2', '3', 'q', 'Q');
+               
+                
+                if (saisie == '1'){
+
+                    
+                    clearConsole();
+                    
+                    System.out.println("1 - Faire un test aléatoire");
+                    System.out.println("2 - Test sans valeur");
+                    System.out.println("3 - Test avec valeurs");
+                    System.out.println();
+                    System.out.println("R - Retour");                  
+                    saisie = testSaisie('1', '2', '3', 'r', 'R');
+                    
+                    if(saisie == '1'){
+                        
+                        clearConsole();
+                        
+                        tailleX = rand(8,16);
+                        System.out.println("Taille du conteneur : " + tailleX);
+                        Conteneur1D conteneur = new Conteneur1D(tailleX);
+                        conteneur.init();
+                        
+                        TabItem1D tabItem = new TabItem1D();
+                        tailleMax = rand(3,5);
+                        nbItem = rand(8,16);
+                        tabItem.randomize(nbItem, tailleMax);
+                        
+                        maxDimItem = tabItem.getPlusGrandeDimension();
+                        nbSousConteneur = conteneur.split(maxDimItem);
+                        
+                        testOptimisationAlgorithmeTri1D(tabItem, conteneur, nbSousConteneur);
+                        
+                        poursuivre();                     
+                                         
+                    }
+                    
+                    if(saisie == '2'){
+                        
+                        clearConsole();
+                        
+                        System.out.println("Non disponible pour le moment");
+                        poursuivre(); 
+                        
+                    }
+                    
+                    if(saisie == '3'){
+                        
+                        clearConsole();
+                        
+                        System.out.println("Non disponible pour le moment");
+                        poursuivre(); 
+                        
+                    }
+                    
+                    
+
+                }
+
+                if (saisie == '2'){
+
+                    clearConsole();
+                    
+                    System.out.println("1 - Faire un test aléatoire");
+                    System.out.println("2 - Test sans valeur");
+                    System.out.println("3 - Test avec valeurs");
+                    System.out.println();
+                    System.out.println("R - Retour");                  
+                    saisie = testSaisie('1', '2', '3', 'r', 'R');
+                    
+                    if(saisie == '1'){
+                        
+                        clearConsole();
+                        
+                        System.out.println("Non disponible pour le moment");
+                        poursuivre(); 
+                        
+                    }
+                    
+                    if(saisie == '2'){
+                        
+                        clearConsole();
+                        
+                        System.out.println("Non disponible pour le moment");
+                        poursuivre(); 
+                        
+                    }
+                    
+                    if(saisie == '3'){
+                        
+                        clearConsole();
+                        
+                        System.out.println("Non disponible pour le moment");
+                        poursuivre(); 
+                        
+                    }
+
+                }
+
+                if (saisie == '3'){
+
+                    clearConsole();
+                    
+                    System.out.println("1 - Faire un test aléatoire");
+                    System.out.println("2 - Test sans valeur");
+                    System.out.println("3 - Test avec valeurs");
+                    System.out.println();
+                    System.out.println("R - Retour");                  
+                    saisie = testSaisie('1', '2', '3', 'r', 'R');
+                    
+                    if(saisie == '1'){
+                        
+                        clearConsole();
+                        
+                        System.out.println("Non disponible pour le moment");
+                        poursuivre();                        
+                        
+                    }
+                    
+                    if(saisie == '2'){
+                        
+                        clearConsole();
+                        
+                        System.out.println("Non disponible pour le moment");
+                        poursuivre();                        
+                        
+                    }
+                    
+                    if(saisie == '3'){
+                        
+                        clearConsole();
+                        
+                        System.out.println("Non disponible pour le moment");
+                        poursuivre();                        
+                        
+                    }
+                    
+
+                }
+            
+            
+            
+            } while (saisie != 'q' && saisie != 'Q');
             
         }
         
-        maxDimItemX = tabItemTest.getPlusGrandeDimensionX();
-        maxDimItemY = tabItemTest.getPlusGrandeDimensionY();
+    }
+    
+    public static void poursuivre(){
         
-        System.out.println("maxDimX = "+ maxDimItemX + "maxDimY = "+maxDimItemY);
+        char continuer;
+        Scanner sc = new Scanner(System.in);
         
-        nbSousConteneur = avionTest.split(maxDimItemX, maxDimItemY);
-        
-        avionTest.afficherID();
-        
-        avionTest.afficherValues();
-        
-        testOptimisationAlgorithmeTri(tabItemTest, avionTest, nbSousConteneur);
+        System.out.println();
+        System.out.println("Appuyez sur une touche puis Entrée pour continuer");
+        continuer = sc.next().charAt(0); 
         
     }
     
-    // fonction permettant de lancer les deux algorithmes de tri et de retenir le plus optimisé    
-    public static void testOptimisationAlgorithmeTri(TabItem _tabItem, Conteneur _conteneur, int _nbSousconteneur){
+    public static int rand(int a, int b){
         
-        Conteneur cFirstFit = new Conteneur();
-        Conteneur cFirstFitDecreasing = new Conteneur();
+        int rand;
+        return rand = ThreadLocalRandom.current().nextInt(a, b+1);
+        
+    }
+    
+    public static char testSaisie(char... caracteres){
+        
+        char saisie;
+        Scanner sc = new Scanner(System.in);
+        boolean saisieTest = false;
+        
+        do {
+            
+            System.out.println();
+            saisie = sc.next().charAt(0);
+            for(char car:caracteres){
+                
+                if (saisie == car){
+                    
+                    saisieTest = true;
+                    
+                }
+                
+            }           
+            
+            
+        } while(saisieTest == false);
+        
+        return saisie;
+        
+    }
+    
+        public static void testOptimisationAlgorithmeTri1D(TabItem1D _tabItem, Conteneur1D _conteneur, int _nbSousconteneur){
+        
+        Conteneur1D cFirstFit = new Conteneur1D();
+        Conteneur1D cFirstFitDecreasing = new Conteneur1D();
         
         cFirstFit.clone(_conteneur);
         cFirstFitDecreasing.clone(_conteneur);
@@ -88,8 +270,8 @@ public class BinPacking {
         double firstFit;
         double firstFitDecreasing;
         
-        firstFit = firstFit(_tabItem, cFirstFit, _nbSousconteneur);
-        firstFitDecreasing = firstFitDecreasing(_tabItem, cFirstFitDecreasing, _nbSousconteneur);
+        firstFit = firstFit1D(_tabItem, cFirstFit, _nbSousconteneur);
+        firstFitDecreasing = firstFitDecreasing1D(_tabItem, cFirstFitDecreasing, _nbSousconteneur);
         
         System.out.println("Methode First Fit : "+firstFit+"% de remplissage");
         System.out.println("Methode First Fit Decreasing : "+firstFitDecreasing+"% de remplissage");
@@ -112,12 +294,134 @@ public class BinPacking {
         
     }
     
+    // fonction permettant de lancer les deux algorithmes de tri et de retenir le plus optimisé    
+    public static void testOptimisationAlgorithmeTri2D(TabItem2D _tabItem, Conteneur2D _conteneur, int _nbSousconteneur){
+        
+        Conteneur2D cFirstFit = new Conteneur2D();
+        Conteneur2D cFirstFitDecreasing = new Conteneur2D();
+        
+        cFirstFit.clone(_conteneur);
+        cFirstFitDecreasing.clone(_conteneur);
+        
+        double firstFit;
+        double firstFitDecreasing;
+        
+        firstFit = firstFit2D(_tabItem, cFirstFit, _nbSousconteneur);
+        firstFitDecreasing = firstFitDecreasing2D(_tabItem, cFirstFitDecreasing, _nbSousconteneur);
+        
+        System.out.println("Methode First Fit : "+firstFit+"% de remplissage");
+        System.out.println("Methode First Fit Decreasing : "+firstFitDecreasing+"% de remplissage");
+        
+        if (firstFit >= firstFitDecreasing){
+            
+            System.out.println("La solution firstfit est la plus optimisée, voici le résultat");
+            _conteneur.clone(cFirstFit);
+            _conteneur.afficherValues();
+            
+        }
+        
+        if (firstFit < firstFitDecreasing){
+            
+            System.out.println("La solution firstfit decreasing est la plus optimisée, voici le résultat");
+            _conteneur.clone(cFirstFitDecreasing);
+            _conteneur.afficherValues();
+        }
+        
+        
+    }
+    
+    public static double firstFit1D(TabItem1D _tabItem, Conteneur1D _conteneur, int _nbSousConteneur){
+        
+        int compteur;
+        boolean sousConteneurLibre;
+        int cptSousConteneur;
+        int i;
+        int numConteneur;
+        double remplissage = 0;
+       
+        for(int k = 0 ; k < _tabItem.getNbItem() ; k++){
+           
+           sousConteneurLibre = false;
+           cptSousConteneur = 1;
+           numConteneur = 0;
+           i = 0;
+           
+            do{
+
+                compteur = 0;
+                if ( i >= _conteneur.getTailleX()) break;
+                
+                do{
+                    
+                    //if ( i >= _conteneur.getTailleX()) break;
+                    if(_conteneur.getX(i)== -1) compteur++;
+                    i++;
+                    if ( i >= _conteneur.getTailleX()) break;
+                    
+                } while (_conteneur.getID(i) == cptSousConteneur);
+
+                if (compteur >= (_tabItem.getItem(k).getTailleX())){ 
+
+                    sousConteneurLibre = true;
+                    numConteneur = cptSousConteneur;
+
+                }
+
+                cptSousConteneur++;
+
+            } while(sousConteneurLibre == false && cptSousConteneur <= _nbSousConteneur);
+
+            if (sousConteneurLibre == true ){
+
+                i=0;
+
+
+                while (_conteneur.getID(i) != numConteneur || _conteneur.getX(i) != -1 ){
+                    
+                    i++;
+
+                }
+
+                for(int j = i ; j < _tabItem.getItem(k).getTailleX()+i ; j++){
+
+                    _conteneur.setX(j, _tabItem.getItem(k).getID());
+
+                }
+
+
+            }
+        }
+        
+        for (i = 0 ; i < _conteneur.getTailleX() ; i++){
+            
+            if (_conteneur.getX(i) != -1) remplissage++;
+            
+        }
+        
+        remplissage = (remplissage/_conteneur.getTailleX())*100;
+        return remplissage;
+        
+    
+    
+    }
+    
+    public static double firstFitDecreasing1D(TabItem1D _tabItem, Conteneur1D _conteneur, int _nbSousConteneur){
+        
+        double remplissage;
+        
+        _tabItem.triSelectionDecroissant();
+        remplissage = firstFit1D(_tabItem, _conteneur, _nbSousConteneur);
+        
+        return remplissage;
+        
+    }
+    
     // algorithme en firstfit
     // firstfit : vérifie si l'item rentre, si il rentre on le place dans le conteneur, si il ne rentre pas on passe à l'item suivant
     // et ainsi de suite jusqu'à avoir essayé de placer tous les item
     
     // Pour ce faire, on vérifie si un item rentre dans un sous conteneur, si il trouve un sous conteneur dans lequel il rentre
-    public static double firstFit(TabItem _tabItem, Conteneur _conteneur, int _nbSousConteneur){
+    public static double firstFit2D(TabItem2D _tabItem, Conteneur2D _conteneur, int _nbSousConteneur){
         
         int compteurX;
         int compteurY;
@@ -234,15 +538,37 @@ public class BinPacking {
     // algorithme first fit decreasing
     // même principe que le first fit sauf que nous aurons au préalable classé les items du plus grand au plus petit
     
-    public static double firstFitDecreasing(TabItem _tabItem, Conteneur _conteneur, int _nbSousConteneur){
+    public static double firstFitDecreasing2D(TabItem2D _tabItem, Conteneur2D _conteneur, int _nbSousConteneur){
         
         double remplissage;
         
         _tabItem.triSelectionDecroissant();
-        remplissage = firstFit(_tabItem, _conteneur, _nbSousConteneur);
+        remplissage = firstFit2D(_tabItem, _conteneur, _nbSousConteneur);
         
         return remplissage;
         
+    }
+    
+    public final static void clearConsole()
+    {
+        
+        try
+        {
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows"))
+            {
+                Runtime.getRuntime().exec("cls");
+            }
+            else
+            {
+                Runtime.getRuntime().exec("clear");
+            }
+        }
+        catch (final Exception e)
+        {
+            //  Handle any exceptions.
+        }
     }
     
 }

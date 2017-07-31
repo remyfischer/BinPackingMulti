@@ -14,27 +14,27 @@ import java.util.*;
 // classe TabItem permettant de contenir des Item et de faire des opérations sur ce tableau
 
 
-public class TabItem {
+public class TabItem2D {
     
     private int nbItem;
-    private ArrayList<Item> tabItem;
+    private ArrayList<Item2D> tabItem;
     
     
-    public TabItem(){
+    public TabItem2D(){
         
         nbItem = 0;
-        tabItem = new ArrayList<Item>();
+        tabItem = new ArrayList<Item2D>();
         
     }
     
-    public void AjoutItem(Item _item){
+    public void AjoutItem(Item2D _item){
         
         tabItem.add(_item);
         nbItem++;
         
     }
     
-    public Item getItem(int i){
+    public Item2D getItem(int i){
         
         return tabItem.get(i);
         
@@ -69,7 +69,7 @@ public class TabItem {
             tailleXItem = sc.nextInt();
             System.out.println("Saisissez une taille Y pour votre item");
             tailleYItem = sc.nextInt();
-            tabItem.add(new Item(tailleXItem, tailleYItem));
+            tabItem.add(new Item2D(tailleXItem, tailleYItem));
             nbItem++;
         }
         
@@ -138,13 +138,67 @@ public class TabItem {
         
     }
     
+    public void randomize(){
+        
+        Scanner sc = new Scanner(System.in);
+        int nbItemAAjouter;
+        int xMax, yMax;
+        
+        System.out.println("Combien d'item voulez vous créer ?");
+        nbItemAAjouter = sc.nextInt();
+        System.out.println("Donnez la dimension x maximale");
+        xMax = sc.nextInt();
+        System.out.println("Donnez la dimension y maximale");
+        yMax = sc.nextInt();
+        
+        int x,y;
+        Item2D[] item = new Item2D[nbItemAAjouter];
+        
+        for(int i = 0 ; i < nbItemAAjouter ; i++){
+            
+            x = (int)((Math.random() * xMax)+1);
+            y = (int)((Math.random() * yMax)+1);
+            
+            item[i] = new Item2D(x, y);
+            
+            this.AjoutItem(item[i]);
+            
+        }
+        
+        this.afficherContenu();
+        
+        
+        
+    }
+    
+      public void randomize(int _nbItemAAjouter, int _xMax, int _yMax){
+        
+        int x,y;
+        Item2D[] item = new Item2D[_nbItemAAjouter];
+        
+        for(int i = 0 ; i < _nbItemAAjouter ; i++){
+            
+            x = (int)((Math.random() * _xMax)+1);
+            y = (int)((Math.random() * _yMax)+1);
+            
+            item[i] = new Item2D(x, y);
+            
+            this.AjoutItem(item[i]);
+            
+        }
+        
+        this.afficherContenu();       
+        
+        
+    }
+    
     // fonction permettant de trier les items par ordre décroissant de surface
     // on utilise la méthode du tri par selection
     
     public void triSelectionDecroissant(){
         
         int i, j, k, max;
-        Item _max;
+        Item2D _max;
         i=0;
         while (i < this.getNbItem() - 1 ){
             

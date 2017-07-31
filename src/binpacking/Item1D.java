@@ -10,29 +10,22 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author remy.fischer
  */
-
-// classe d'item correspondant aux caisses qui seront rentrées dans l'avion
-// les items sont considérés à deux dimensions 
-
-public class Item {
+public class Item1D {
     
     private int tailleX;
-    private int tailleY;
     private static final AtomicInteger ID_FACTORY = new AtomicInteger();
     private final int id;
     
-    public Item(){
+    public Item1D(){
         
         tailleX = 0;
-        tailleY = 0;
         id = ID_FACTORY.getAndIncrement();
         
     }
     
-    public Item(int _x, int _y){
+    public Item1D(int _x){
         
         tailleX = _x;
-        tailleY = _y;
         id = ID_FACTORY.getAndIncrement();
         
     }
@@ -40,12 +33,6 @@ public class Item {
     public int getTailleX(){
         
         return tailleX;
-        
-    }
-    
-    public int getTailleY(){
-        
-        return tailleY;
         
     }
     
@@ -58,12 +45,6 @@ public class Item {
     public void setTailleX(int _x){
         
         tailleX = _x;
-        
-    }
-    
-    public void setTailleY(int _y){
-        
-        tailleY = _y;
         
     }
     

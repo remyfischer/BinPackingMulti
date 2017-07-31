@@ -19,13 +19,13 @@ package binpacking;
 // une dimension pour l'axe Y
 // une troisième dimension permettant d'avoir une vision sur les sous conteneurs et sur les item présent dans le conteneur
 
-public class Conteneur {
+public class Conteneur2D {
     
     private int tailleX;
     private int tailleY;
     private int[][][] conteneur;
     
-    public Conteneur(){
+    public Conteneur2D(){
         
         tailleX = 1;
         tailleY = 1;
@@ -33,7 +33,7 @@ public class Conteneur {
         
     }
     
-    public Conteneur(int _x, int _y){
+    public Conteneur2D(int _x, int _y){
         
         tailleX = _x;
         tailleY = _y;
@@ -107,7 +107,7 @@ public class Conteneur {
     
     
     // permet de cloner un conteneur
-    public void clone(Conteneur _source){
+    public void clone(Conteneur2D _source){
         
         this.setTailleXY(_source.getTailleX(), _source.getTailleY());
         for(int i = 0 ; i < this.getTailleX() ; i++){
