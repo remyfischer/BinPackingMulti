@@ -96,7 +96,7 @@ public class Conteneur1D {
         
         for(int i = 0 ; i < tailleX ; i++){
             
-            System.out.println("Conteneur[" + i + "][0] = " + conteneur[i][0] + "     [" + i + "][1] = " + conteneur[i][1]);
+            System.out.print("Conteneur[" + i + "][0] = " + conteneur[i][0] + "     [" + i + "][1] = " + conteneur[i][1]);
             
         }
         
@@ -105,14 +105,34 @@ public class Conteneur1D {
         
     }
     
-    public void afficherID(){
+    public void afficherIDFr(){
         
-        System.out.println("-------------------------------");
+        
+        System.out.println("Affichage des sous conteneurs du conteneur");
         
         for(int i = 0 ; i < tailleX ; i++){
             
                 
-            System.out.println(conteneur[i][1]+" ");
+            System.out.print(conteneur[i][1]+" ");
+                
+        }
+            
+            
+        System.out.println();
+        
+        System.out.println("-------------------------------");
+        
+    }
+    
+    public void afficherIDEn(){
+        
+        
+        System.out.println("Display within container of container");
+        
+        for(int i = 0 ; i < tailleX ; i++){
+            
+                
+            System.out.print(conteneur[i][1]+" ");
                 
         }
             

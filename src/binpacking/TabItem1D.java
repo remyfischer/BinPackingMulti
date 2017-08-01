@@ -66,13 +66,27 @@ public class TabItem1D {
         
     }
     
-    public void afficherContenu(){
+    public void afficherContenuFr(){
         
         System.out.println("-------------------------------");
         
         for(int i = 0 ; i < nbItem ; i++){
             
             System.out.println("Taille item " + i + " : " + (tabItem.get(i)).getTailleX());
+        
+        }
+        
+        System.out.println("-------------------------------");
+        
+    }
+    
+    public void afficherContenuEn(){
+        
+        System.out.println("-------------------------------");
+        
+        for(int i = 0 ; i < nbItem ; i++){
+            
+            System.out.println("Item' size " + i + " : " + (tabItem.get(i)).getTailleX());
         
         }
         
@@ -107,7 +121,7 @@ public class TabItem1D {
         
     }
     
-        public void randomize(){
+        public void randomize(char langue){
         
         Scanner sc = new Scanner(System.in);
         int nbItemAAjouter;
@@ -131,13 +145,21 @@ public class TabItem1D {
             
         }
         
-        this.afficherContenu();
+        if(langue == 'f' || langue == 'F') {
+            
+            this.afficherContenuFr();
+            
+        } else {
+            
+            this.afficherContenuEn();
+            
+        }
         
         
         
     }
     
-      public void randomize(int _nbItemAAjouter, int _xMax){
+      public void randomize(int _nbItemAAjouter, int _xMax, char langue){
         
         int x;
         Item1D[] item = new Item1D[_nbItemAAjouter];
@@ -152,7 +174,15 @@ public class TabItem1D {
             
         }
         
-        this.afficherContenu();       
+        if(langue == 'f' || langue == 'F') {
+            
+            this.afficherContenuFr();
+            
+        } else {
+            
+            this.afficherContenuEn();
+            
+        }      
         
         
     }

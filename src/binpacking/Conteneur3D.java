@@ -150,7 +150,7 @@ public class Conteneur3D {
                 
                 for(int k = 0 ; k < tailleZ ; k++){
                     
-                    System.out.println("Conteneur[" + i + "]["+j+"]["+k+"][0] = " + conteneur[i][j][k][0] + "     [" + i + "]["+j+"]["+k+"][1] = " + conteneur[i][j][k][1]);
+                    System.out.print("Conteneur[" + i + "]["+j+"]["+k+"][0] = " + conteneur[i][j][k][0] + "     [" + i + "]["+j+"]["+k+"][1] = " + conteneur[i][j][k][1]);
                     
                 }
                 
@@ -165,9 +165,35 @@ public class Conteneur3D {
         
     }
     
-    public void afficherID(){
+    public void afficherIDFr(){
+        
+        System.out.println("Affichage des sous conteneurs du conteneur");
+        
+        for(int i = 0 ; i < tailleX ; i++){
+            
+            
+            
+            for(int j = 0 ; j < tailleY ; j++){
+                
+                for(int k = 0 ; k < tailleZ ; k++){
+                    
+                    System.out.print(conteneur[i][j][1]+" ");
+                    
+                }
+                
+                System.out.println();
+                
+            }
+
+        }
         
         System.out.println("-------------------------------");
+        
+    }
+    
+    public void afficherIDEn(){
+        
+        System.out.println("Display within container of container");
         
         for(int i = 0 ; i < tailleX ; i++){
             

@@ -78,13 +78,27 @@ public class TabItem3D {
         
     }
     
-    public void afficherContenu(){
+    public void afficherContenuFr(){
         
         System.out.println("-------------------------------");
         
         for(int i = 0 ; i < nbItem ; i++){
             
             System.out.println("Taille item " + i + " : " + (tabItem.get(i)).getTailleX()+" ; "+(tabItem.get(i)).getTailleY()+" ; "+(tabItem.get(i).getTailleZ()));
+        
+        }
+        
+        System.out.println("-------------------------------");
+        
+    }
+    
+    public void afficherContenuEn(){
+        
+        System.out.println("-------------------------------");
+        
+        for(int i = 0 ; i < nbItem ; i++){
+            
+            System.out.println("Item' size " + i + " : " + (tabItem.get(i)).getTailleX()+" ; "+(tabItem.get(i)).getTailleY()+" ; "+(tabItem.get(i).getTailleZ()));
         
         }
         
@@ -160,7 +174,7 @@ public class TabItem3D {
     }
     
     // fonction permettant de remplir avec des items aléatoires le tableau d'item
-    public void randomize(){
+    public void randomize(char langue){
         
         Scanner sc = new Scanner(System.in);
         int nbItemAAjouter;
@@ -190,13 +204,21 @@ public class TabItem3D {
             
         }
         
-        this.afficherContenu();
+        if(langue == 'f' || langue == 'F') {
+            
+            this.afficherContenuFr();
+            
+        } else {
+            
+            this.afficherContenuEn();
+            
+        }
         
         
         
     }
     
-    public void randomize(int _nbItemAAjouter, int _xMax, int _yMax, int _zMax){
+    public void randomize(int _nbItemAAjouter, int _xMax, int _yMax, int _zMax, char langue){
         
         int x,y,z;
         Item3D[] item = new Item3D[_nbItemAAjouter];
@@ -213,7 +235,15 @@ public class TabItem3D {
             
         }
         
-        this.afficherContenu();       
+        if(langue == 'f' || langue == 'F') {
+            
+            this.afficherContenuFr();
+            
+        } else {
+            
+            this.afficherContenuEn();
+            
+        }       
         
         
     }

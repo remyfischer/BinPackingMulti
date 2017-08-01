@@ -75,13 +75,27 @@ public class TabItem2D {
         
     }
     
-    public void afficherContenu(){
+    public void afficherContenuFr(){
         
         System.out.println("-------------------------------");
         
         for(int i = 0 ; i < nbItem ; i++){
             
             System.out.println("Taille item " + i + " : " + (tabItem.get(i)).getTailleX()+" ; "+(tabItem.get(i)).getTailleY());
+        
+        }
+        
+        System.out.println("-------------------------------");
+        
+    }
+    
+    public void afficherContenuEn(){
+        
+        System.out.println("-------------------------------");
+        
+        for(int i = 0 ; i < nbItem ; i++){
+            
+            System.out.println("Item' size " + i + " : " + (tabItem.get(i)).getTailleX()+" ; "+(tabItem.get(i)).getTailleY());
         
         }
         
@@ -138,7 +152,7 @@ public class TabItem2D {
         
     }
     
-    public void randomize(){
+    public void randomize(char langue){
         
         Scanner sc = new Scanner(System.in);
         int nbItemAAjouter;
@@ -165,13 +179,22 @@ public class TabItem2D {
             
         }
         
-        this.afficherContenu();
+        if(langue == 'f' || langue == 'F') {
+            
+            this.afficherContenuFr();
+            
+        } else {
+            
+            this.afficherContenuEn();
+            
+        }
+        
         
         
         
     }
     
-      public void randomize(int _nbItemAAjouter, int _xMax, int _yMax){
+      public void randomize(int _nbItemAAjouter, int _xMax, int _yMax, char langue){
         
         int x,y;
         Item2D[] item = new Item2D[_nbItemAAjouter];
@@ -187,7 +210,15 @@ public class TabItem2D {
             
         }
         
-        this.afficherContenu();       
+        if(langue == 'f' || langue == 'F') {
+            
+            this.afficherContenuFr();
+            
+        } else {
+            
+            this.afficherContenuEn();
+            
+        }       
         
         
     }
